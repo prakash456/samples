@@ -159,7 +159,12 @@ function onCreateOfferSuccess(desc) {
     onCreateSessionDescriptionError
   );
 }
-
+RTCPeerConnection.getStats(function(stats) {
+   var report = stats.result()[0];
+   report.names().forEach(function(name) {
+       console.log(name, report.stat(name));
+   }
+)}
 function onSetLocalSuccess(pc) {
   trace(getName(pc) + ' setLocalDescription complete');
 }
